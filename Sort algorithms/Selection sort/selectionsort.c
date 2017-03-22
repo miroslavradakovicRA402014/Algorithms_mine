@@ -1,0 +1,47 @@
+#include <stdio.h>
+
+void printArray(int* arr);
+void selectionSort(int* arr);
+
+static int len = 8;
+
+int main() {
+
+   int arr[] = {14,33,27,35,10,19,42,44};
+
+   printf("Unsorted array : \n\n");
+   printArray(arr);
+ 
+   selectionSort(arr);
+
+   printf("\nSorted array :\n\n");
+   printArray(arr);
+
+   return 0;
+}
+
+void printArray(int* arr) {
+   int i;
+
+   for (i = 0; i < len; i++) {
+     printf("A[%d] = %d \n",i,*(arr + i));
+   }
+}
+
+void selectionSort(int* arr) {
+   int tmp,i,j,ind,min;
+
+   for (i = 0; i < len-1; i++) {
+     min = *(arr + i); 
+     ind = i;
+     for (j = i + 1; j < len ; j++) {
+        if (min > *(arr + j)) {
+          min = *(arr + j);
+          ind = j;
+        }
+     }    
+     tmp = *(arr + i);
+     *(arr + i) = *(arr + ind);
+     *(arr + ind) = tmp;
+   }
+}
